@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#root{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    /* overflow: hidden; */
+}
+.grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    max-width: 1250px;
+    width: 100%;
+    background: url(https://accgroup.vn/wp-content/uploads/2023/02/Background-la-gi.jpg.webp) center center  ;
+    background-size: 100%;
+    margin: 5px;
+    border-radius: 15px;
+    /* box-shadow: 5px 5px grey; */
+}
+.playing-heading{
+    padding-top: 15px;
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.playing-btnBack,.playing-btnReplay{
+    text-decoration: none;
+    color: white;
+    width: 120px;
+    text-align: center;
+    font-size: 40px;
+    border: 1px solid black;
+    background-color:gray;
+    border-radius: 20px;
+    z-index: 1;
+    top:70px;
+    left: 20%;
+    cursor: pointer;
+}
+.playing-btnBack:hover,.playing-btnReplay:hover{
+    color: gray;
+    background-color:white;
+}
+.playing-user{
+    color:gold;
+}
+.boardgame {
+    display: grid;
+    grid-template-columns: repeat(20, 30px);
+    grid-template-rows: repeat(20, 30px);
+    gap: 2px;
+    margin: 20px;
+    background-color: white;
+}
+
+.cell {
+    font-family:cursive;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.x{
+    color:red;
+}
+.o{
+    color:blue
+}
+.img-end{
+    width: 600px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    opacity: 0; 
+    animation: zoomIn 1s ease forwards,fadeOut 1s ease 3s forwards;
+}
+@keyframes zoomIn {
+    from {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    to {
+        width: 600px;
+        height: 600px;
+        opacity: 1; 
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity: 1; 
+    }
+    to {
+        opacity: 0; 
+    }
+}
