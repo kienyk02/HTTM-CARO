@@ -41,7 +41,7 @@ def saveUser():
     try:
         data=request.json
         from dal import userDAO
-        userDAO.saveUser((data['username'],data['password'],data['highscore'],data['id']))
+        userDAO.saveUser((data['username'],data['password'], data['email'],data['highscore'],data['id']))
         return jsonify("success")
     except Exception as e:
         return jsonify({"error": str(e)})
@@ -71,7 +71,7 @@ def insertUser():
     try:
         data=request.json
         from dal import userDAO
-        userDAO.insertUser((data['username'],data['password']))
+        userDAO.insertUser((data['username'],data['password'],data['email']))
         return jsonify("Success")
     except Exception as e:
         return jsonify({"error": str(e)})
