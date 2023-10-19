@@ -10,6 +10,7 @@ function Playing() {
         id:1,
         username:"sa",
         password:"123",
+        email:"",
         highScore:"8"
     })
     const level=useParams().level

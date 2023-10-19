@@ -7,6 +7,7 @@ function Home() {
         id:1,
         username:"sa",
         password:"123",
+        email:"",
         highScore:"8"
     })
     const [level, setLevel] = useState("");
