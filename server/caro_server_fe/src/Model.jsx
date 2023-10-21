@@ -18,7 +18,8 @@ function Model(){
         .then(data=>setModel(data))
         .catch(err=>console.log(err))
     },[])
-    const onSaveClick=()=>{
+    const onSaveClick=(e)=>{
+        e.preventDefault()
         fetch(`http://127.0.0.1:5000/savemodel/${id}`,
         {
             method: 'POST',
@@ -43,21 +44,21 @@ function Model(){
     
     return(
         <div className="grid">
-            <div className="model-form">       
+            <form onSubmit={onSaveClick} className="model-form">       
                 <h1>{id < 0 ? "New Model" : `Model ${id}`}</h1>
                 <input hidden type="number" value={model.id} 
                     onChange={(e)=>setModel({...model,id:e.target.value})} />
                 <br/>
                 <label >Name</label>
-                <input type="text" value={model.name}
+                <input required type="text" value={model.name}
                     onChange={e => setModel({ ...model, name: e.target.value })} />
                 <br />
                 <label >Link</label>
-                <input type="text" value={model.link}
+                <input required type="text" value={model.link}
                     onChange={e => setModel({ ...model, link: e.target.value })} />
                 <br />
                 <label >Level</label>
-                <input type="text" value={model.level}
+                <input required type="text" value={model.level}
                     onChange={e => setModel({ ...model, level: e.target.value })} />
                 <br />
                 <label >Active</label>
@@ -65,11 +66,10 @@ function Model(){
                     onChange={e => setModel({ ...model, action: e.target.checked ? 'enable':'disable' })} />
                 <br />
                 <div style={{display:'flex',justifyContent:'space-between'}}>
-                    <button className="btn btn-primary" onClick={onSaveClick}>Save model</button>
+                    <button type="submit" className="btn btn-primary" >Save model</button>
                     <Link to="/models" className="btn btn-secondary" style={{width:'150px'}}>Back</Link>
                 </div>
-                
-            </div>
+            </form>
         </div>
     )
 }

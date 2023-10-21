@@ -13,14 +13,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
     max-width: 1250px;
     width: 100%;
-    background: url(https://accgroup.vn/wp-content/uploads/2023/02/Background-la-gi.jpg.webp) center center  ;
+    background: url(https://accgroup.vn/wp-content/uploads/2023/02/Background-la-gi.jpg) center center  ;
     background-size: 100%;
     margin: 5px;
     border-radius: 15px;
-    /* box-shadow: 5px 5px grey; */
+    box-shadow: 0 0 10px grey;
 }
 .playing-heading{
     padding-top: 15px;
