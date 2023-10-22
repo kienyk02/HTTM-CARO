@@ -27,7 +27,7 @@ function Home() {
         <div style={{fontSize:'39px',color:'white',fontWeight:'bold',fontFamily:'cursive'}}>CARO GAME</div>
         <div className="menu">
             <h1 className='playing-user'>{"User: "+user.username}</h1>
-            <h1 style={{color:"orange",marginBottom:"30px"}}>{"HighScore: "+user.highScore}</h1>
+            <h1 style={{color:"orange",marginBottom:"30px"}}>{"High Score: "+user.highScore}</h1>
             <Link to={`/play/${level}`} className="menu-button">Play</Link>
             <div className="dropdown menu-button">
                 Level: {level}
