@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import "./assets/css/style.css"
 import { Link,useParams } from 'react-router-dom';
 import imgwin from "./assets/img/imgwin.png"
@@ -13,6 +13,13 @@ function Playing() {
         email:"",
         highScore:"8"
     })
+    // useEffect(()=>{
+    //     fetch(`http://127.0.0.1:5000/getusersession`)
+    //     .then(response=>response.json())
+    //     .then(data=>{
+    //         setUser(data)
+    //     })
+    // },[])
     const level=useParams().level
     const [boardgame,setBoardgame] =useState(Array.from({ length: rows }, () =>Array.from({ length: cols }, () => 0)))
     const [gameActive,setGameActive]=useState(true)
@@ -138,6 +145,7 @@ function Playing() {
     }
     // console.log(boardgame)
     return (
+        user!='fail' &&
         <div className="grid">
             <div className="playing-heading">
                 <Link to="/" className="playing-btnBack"><i className="fa-solid fa-reply"></i></Link>

@@ -10,6 +10,13 @@ function Home() {
         email:"",
         highScore:"8"
     })
+    // useEffect(()=>{
+    //     fetch(`http://127.0.0.1:5000/getusersession`)
+    //     .then(response=>response.json())
+    //     .then(data=>{
+    //         setUser(data)
+    //     })
+    // },[])
     const [level, setLevel] = useState("");
     const [models,setModels]=useState([])
 
@@ -23,6 +30,7 @@ function Home() {
     },[])
 
     return (
+    user!='fail' &&
     <div className="grid">
         <div style={{fontSize:'39px',color:'white',fontWeight:'bold',fontFamily:'cursive'}}>CARO GAME</div>
         <div className="menu">
