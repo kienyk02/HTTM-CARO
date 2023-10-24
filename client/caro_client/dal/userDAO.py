@@ -17,46 +17,6 @@ class User:
             "highScore": self.highscore,
         }
 
-def getAllUsers():
-    db=mysql.connector.connect(
-        host=host,
-        user=username,
-        passwd=passwd,
-        database=database
-    )
-    myCursor=db.cursor()
-    myCursor.execute("SELECT * FROM caro.user")
-    records=[]
-    for item in myCursor:
-        records.append(User(item[0],item[1],item[2],item[3],item[4]))
-    return records
-
-def saveUser(data):
-    db=mysql.connector.connect(
-        host=host,
-        user=username,
-        passwd=passwd,
-        database=database
-    )
-    myCursor=db.cursor()
-    sql="update caro.user set username=%s, password= %s, email=%s, highScore=%s, where ID=%s"
-    myCursor.execute(sql,data)
-    db.commit()    
-
-def getRanking():
-    db=mysql.connector.connect(
-        host=host,
-        user=username,
-        passwd=passwd,
-        database=database
-    )
-    myCursor=db.cursor()
-    myCursor.execute("SELECT * FROM caro.user where highScore!=10000 order by highScore asc")
-    records=[]
-    for item in myCursor:
-        records.append(User(item[0],item[1],item[2],item[3],item[4]))
-    return records
-
 def updateHighScore(data):
     db=mysql.connector.connect(
         host=host,
@@ -69,7 +29,7 @@ def updateHighScore(data):
     myCursor.execute(sql,data)
     db.commit()
 
-def insertUser(data):
+def getUserById(id):
     db=mysql.connector.connect(
         host=host,
         user=username,
@@ -77,6 +37,8 @@ def insertUser(data):
         database=database
     )
     myCursor=db.cursor()
-    sql="insert into user(username, password, email) values (%s,%s,%s)"
-    myCursor.execute(sql,data)
-    db.commit()
+    myCursor.execute("SELECT * FROM caro.user where ID="+str(id))
+    record=None
+    for item in myCursor:
+        record=User(item[0],item[1],item[2],item[3],item[4])
+    return record

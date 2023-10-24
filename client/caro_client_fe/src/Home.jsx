@@ -10,13 +10,20 @@ function Home() {
         email:"",
         highScore:"8"
     })
-    // useEffect(()=>{
-    //     fetch(`http://127.0.0.1:5000/getusersession`)
-    //     .then(response=>response.json())
-    //     .then(data=>{
-    //         setUser(data)
-    //     })
-    // },[])
+    useEffect(()=>{
+        // fetch(`http://127.0.0.1:5001/getusersession`,{credentials: 'include'})
+        // .then(response=>response.json())
+        // .then(data=>{
+        //     console.log(data)
+        //     setUser(data)
+        // })
+        fetch(`http://127.0.0.1:5001/getUser/31`)
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data)
+            setUser(data)
+        })
+    },[])
     const [level, setLevel] = useState("");
     const [models,setModels]=useState([])
 
