@@ -20,7 +20,7 @@ function Playing() {
         //     console.log(data)
         //     setUser(data)
         // })
-        fetch(`http://127.0.0.1:5001/getUser/31`)
+        fetch(`http://127.0.0.1:5001/getUser/39`)
         .then(response=>response.json())
         .then(data=>{
             console.log(data)

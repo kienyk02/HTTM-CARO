@@ -79,6 +79,7 @@ function Models() {
                 </tbody>
             </table>
         </div>
+        <Link style={{marginRight:'5px', alignSelf:'end',width:'110px'}} to="/" className='btn btn-secondary'>Back</Link>
     </div>
     )
 }
