@@ -34,8 +34,6 @@ function Model(){
         .then(data=> {
             if(data){
                 navigate('/models')
-            }else{
-                alert("du lieu bj trung!")
             }
         })
         .catch(err=>console.log(err))   
