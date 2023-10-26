@@ -58,15 +58,15 @@ function Model(){
                     onChange={e => setModel({ ...model, link: e.target.value })} />
                 <br />
                 <label >Easy Depth</label>
-                <input required type="text" value={model.easy}
+                <input required type="number" value={model.easy}
                     onChange={e => setModel({ ...model, easy: e.target.value })} />
                 <br />
                 <label >Medium Depth</label>
-                <input required type="text" value={model.medium}
+                <input required type="number" value={model.medium}
                     onChange={e => setModel({ ...model, medium: e.target.value })} />
                 <br />
                 <label >Hard Depth</label>
-                <input required type="text" value={model.hard}
+                <input required type="number" value={model.hard}
                     onChange={e => setModel({ ...model, hard: e.target.value })} />
                 <br />
                 <input hidden type="checkbox" checked={model.action=="enable"? true:false}
