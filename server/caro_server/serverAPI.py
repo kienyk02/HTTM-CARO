@@ -12,7 +12,7 @@ def get_move(level):
         # Lấy dữ liệu đầu vào từ request dưới dạng JSON
         board={
             "boardSquares":request.json,
-            "depth":1 if level == "Easy" else (2 if level == "Medium" else 1)
+            "depth":1
         }
         # Xử lý dữ liệu
         from dal import modelDAO
