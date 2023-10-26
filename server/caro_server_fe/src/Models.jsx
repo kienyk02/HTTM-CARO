@@ -17,7 +17,7 @@ function Models() {
         setModels(
             models_default.filter((model)=>{
                 return model.name.toLowerCase().includes(e.target.value.toLowerCase()) 
-                || model.level.toLowerCase().includes(e.target.value.toLowerCase()) 
+                || model.link.toLowerCase().includes(e.target.value.toLowerCase()) 
             })
         )
     }
@@ -35,7 +35,7 @@ function Models() {
             <input 
                 style={{height:'40px',width:'300px',padding:'10px',border: '1px solid #ccc',fontSize:'18px',borderRadius:'5px'}} 
                 onChange={(e)=>handleSearch(e)}  type="text"
-                placeholder='Enter name or level'
+                placeholder='Enter name or link'
             />
             <Link to="/model/-1">
                 <button className="btn btn-primary">
@@ -50,7 +50,9 @@ function Models() {
                     <th>ID</th>
                     <th>NAME</th>
                     <th>LINK</th>
-                    <th>LEVEL</th>
+                    <th>EASY</th>
+                    <th>MEDIUM</th>
+                    <th>HARD</th>
                     <th>ACTIVE</th>
                     <th>ACTION</th>
                     </tr>
@@ -63,7 +65,9 @@ function Models() {
                         <td>{model.id}</td>
                         <td>{model.name}</td>
                         <td>{model.link}</td>
-                        <td>{model.level}</td>
+                        <td>{model.easy}</td>
+                        <td>{model.medium}</td>
+                        <td>{model.hard}</td>
                         <td>
                             <input disabled style={{ width: '25px', height: '25px' }} type="checkbox" 
                             defaultChecked={model.action=="enable" ? true:false}/>

@@ -18,7 +18,8 @@ def get_move(level):
         from dal import modelDAO
         models=modelDAO.getAllModels()
         for model in models:
-            if model.action=="enable" and model.level==level:
+            if model.action=="enable":
+                board["depth"]=model.easy if level=="Easy" else model.medium if level=="Medium" else model.hard
                 result = subprocess.run(['python', model.link], input=json.dumps(board), text=True, capture_output=True)
                 move = result.stdout
                 # Trả về tuple
@@ -44,7 +45,9 @@ def get_modelbyid(id):
             "id": "",
             "name": "",
             "link": "",
-            "level": "",
+            "easy": "",
+            "medium":"",
+            "hard":"",
             "action": ""
         }
         if int(id)>0:
@@ -56,12 +59,12 @@ def get_modelbyid(id):
 @app.route('/savemodel/<id>', methods=['POST'])
 def saveModel(id):
     try:
-        data=request.json
+        model=request.json
         from dal import modelDAO
         if int(id)>0:
-            modelDAO.updateModel((data["name"],data["link"],data["level"],data["action"],data["id"]))
+            modelDAO.updateModel(model)
         else:
-            modelDAO.addModel((data["name"],data["link"],data["level"],data["action"]))
+            modelDAO.addModel(model)
         return jsonify("success")
     except Exception as e:
         return jsonify({"error": str(e)})

@@ -6,7 +6,9 @@ function Model(){
         id: '',
         name: '', 
         link: '', 
-        level: '', 
+        easy: '', 
+        medium:'',
+        hard:'',
         action: '',
     })
     const params=useParams()
@@ -55,12 +57,19 @@ function Model(){
                 <input required type="text" value={model.link}
                     onChange={e => setModel({ ...model, link: e.target.value })} />
                 <br />
-                <label >Level</label>
-                <input required type="text" value={model.level}
-                    onChange={e => setModel({ ...model, level: e.target.value })} />
+                <label >Easy Depth</label>
+                <input required type="text" value={model.easy}
+                    onChange={e => setModel({ ...model, easy: e.target.value })} />
                 <br />
-                <label >Active</label>
-                <input type="checkbox" checked={model.action=="enable"? true:false}
+                <label >Medium Depth</label>
+                <input required type="text" value={model.medium}
+                    onChange={e => setModel({ ...model, medium: e.target.value })} />
+                <br />
+                <label >Hard Depth</label>
+                <input required type="text" value={model.hard}
+                    onChange={e => setModel({ ...model, hard: e.target.value })} />
+                <br />
+                <input hidden type="checkbox" checked={model.action=="enable"? true:false}
                     onChange={e => setModel({ ...model, action: e.target.checked ? 'enable':'disable' })} />
                 <br />
                 <div style={{display:'flex',justifyContent:'space-between'}}>

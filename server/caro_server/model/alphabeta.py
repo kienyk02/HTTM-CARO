@@ -148,7 +148,7 @@ board = Board()
 board.squares=np.array(boardRev["boardSquares"])
 board.marked_sqrs=np.count_nonzero(board.squares)
 # Tìm kiếm nước đi dựa trên trạng thái bàn cờ
-eval, move = AlphaBeta(1,float('-inf'),float('inf'),board, False)
+eval, move = AlphaBeta(int(boardRev["depth"]),float('-inf'),float('inf'),board, False)
 # In kết quả ra stdout
 print(json.dumps({
     "row":move[0],
