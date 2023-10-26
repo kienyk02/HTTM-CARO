@@ -24,7 +24,8 @@ function Home() {
             setUser(data)
         })
     },[])
-    const [level, setLevel] = useState("");
+    const [level, setLevel] = useState("Easy");
+    
     return (
     user!='fail' &&
     <div className="grid">
