@@ -25,17 +25,6 @@ function Home() {
         })
     },[])
     const [level, setLevel] = useState("");
-    const [models,setModels]=useState([])
-
-    useEffect(()=>{
-        fetch(`http://127.0.0.1:5000/getmodels`)
-        .then(response=>response.json())
-        .then(data =>{
-            setModels(data)
-            setLevel(data[0].level)
-        })
-    },[])
-
     return (
     user!='fail' &&
     <div className="grid">
@@ -47,13 +36,9 @@ function Home() {
             <div className="dropdown menu-button">
                 Level: {level}
                 <div className="dropdown-content">
-                    {
-                        models.map((model)=>{
-                            return(
-                            model.action=="enable" && 
-                            <div key={model.id} onClick={()=>setLevel(model.level)} className='selectlv-item'>{model.level}</div>)
-                        })
-                    }
+                    <div onClick={()=>setLevel("Easy")} className='selectlv-item'>Easy</div>
+                    <div onClick={()=>setLevel("Medium")} className='selectlv-item'>Medium</div>
+                    <div onClick={()=>setLevel("Hard")} className='selectlv-item'>Hard</div>
                 </div>
             </div>
             <Link to="/matchhistory" className="menu-button">Match History</Link>
