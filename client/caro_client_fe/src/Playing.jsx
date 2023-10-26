@@ -62,9 +62,9 @@ function Playing() {
             }
         })
         .then(response=>response.json())
-        .then(data=>{
-            if(data!=null){
-                boardtemp[data[0]][data[1]]= 2;
+        .then(move=>{
+            if(move!=null){
+                boardtemp[move.row][move.col]= 2;
                 setBoardgame(boardtemp)
                 if(finalState(boardtemp)){
                     setGameActive(false)

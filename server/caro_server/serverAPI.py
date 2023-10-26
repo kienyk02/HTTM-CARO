@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import subprocess
+import json
 
 app = Flask(__name__)
 CORS(app, supports_credentials=False, methods=["GET", "POST", "PUT", "DELETE"])
@@ -9,16 +10,19 @@ CORS(app, supports_credentials=False, methods=["GET", "POST", "PUT", "DELETE"])
 def get_move(level):
     try:
         # Lấy dữ liệu đầu vào từ request dưới dạng JSON
-        boardSquares = request.json
-        # Xử lý dữ liệu và tạo tuple
+        board={
+            "boardSquares":request.json,
+            "depth":1 if level == "Easy" else (2 if level == "Medium" else 1)
+        }
+        # Xử lý dữ liệu
         from dal import modelDAO
         models=modelDAO.getAllModels()
         for model in models:
             if model.action=="enable" and model.level==level:
-                result = subprocess.run(['python', model.link], input=str(boardSquares), text=True, capture_output=True)
-                output = eval(result.stdout)
+                result = subprocess.run(['python', model.link], input=json.dumps(board), text=True, capture_output=True)
+                move = result.stdout
                 # Trả về tuple
-                return jsonify(output)
+                return move
     except Exception as e:
         return jsonify({"error": str(e)})
 

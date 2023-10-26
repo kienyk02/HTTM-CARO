@@ -1,6 +1,7 @@
 import sys
 import numpy as np
 import copy
+import json
 
 ROWS = 20
 COLS = 20
@@ -122,15 +123,16 @@ def ClimbingHill(board):
         return score,best_move    
 
 # Đọc dữ liệu đầu vào từ stdin
-boardSquares = sys.stdin.read()
-# chuyển đổi thành mảng
-boardSquares = eval(boardSquares)
-# chuyển thành mảng numpy
-boardSquares=np.array(boardSquares)
+dataRev = sys.stdin.read()
+boardRev = json.loads(dataRev)
+
 board = Board()
-board.squares=boardSquares
+board.squares=np.array(boardRev["boardSquares"])
 board.marked_sqrs=np.count_nonzero(board.squares)
 # Tìm kiếm nước đi dựa trên trạng thái bàn cờ
 eval, move = ClimbingHill(board)
 # In kết quả ra stdout
-print(move)
+print(json.dumps({
+    "row":move[0],
+    "col":move[1]
+}))
