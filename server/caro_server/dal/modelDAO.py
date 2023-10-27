@@ -87,3 +87,14 @@ def deleteModel(id):
     myCursor.execute("delete from caro_server.model where ID="+str(id))
     db.commit()
     
+def activeModel(id):
+    db=mysql.connector.connect(
+        host=host,
+        user=username,
+        passwd=passwd,
+        database=database
+    )
+    myCursor=db.cursor()
+    myCursor.execute("update caro_server.model set status='disable'")
+    myCursor.execute("update caro_server.model set status='enable' where ID="+str(id))
+    db.commit()

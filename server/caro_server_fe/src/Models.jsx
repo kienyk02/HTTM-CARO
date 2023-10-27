@@ -4,7 +4,9 @@ import "./assets/css/style.css"
 let models_default=[]
 function Models() {
     const [models,setModels]=useState([])
-    useEffect(()=>{
+    const [selected,setSelected]=useState(0)
+    
+    function loadModels(){
         fetch("http://127.0.0.1:5000/getmodels")
         .then((response)=>response.json())
         .then(data=>{
@@ -12,6 +14,9 @@ function Models() {
             setModels(data)
         })
         .catch(err=> console.log(err))
+    }
+    useEffect(()=>{
+        loadModels()
     },[])
     function handleSearch(e){
         setModels(
@@ -28,9 +33,36 @@ function Models() {
             setModels(models.filter(model => model.id!=id))
         }
     }
+    function handleActiveBtn(){
+        if(selected>0){
+            fetch(`http://127.0.0.1:5000/activemodel/${selected}`)
+            .then((response)=>response.json())
+            .then(data=>{
+                setModels([])
+                loadModels()
+            })
+        }else{
+            alert("Vui lòng chọn model!")
+        }
+    }
+
     return (
     <div className="grid">
         <h2 className="text-center" style={{paddingTop:"10px"}}>Models</h2>
+        <div className="select-model">
+            <label htmlFor="">Active Model</label>
+            <select className='select-list' value={selected} onChange={(e)=>setSelected(e.target.value)}>
+                <option value={0}>--Select Model--</option>
+                {
+                    models.map((model)=>{
+                        return(
+                            <option key={model.id} value={model.id}>{model.name}</option>
+                        )
+                    })
+                }
+            </select>
+            <div onClick={handleActiveBtn} className="btn btn-primary">Active</div>
+        </div>
         <div style={{display:'flex', justifyContent:'space-between'}} className="row">
             <input 
                 style={{height:'40px',width:'300px',padding:'10px',border: '1px solid #ccc',fontSize:'18px',borderRadius:'5px'}} 

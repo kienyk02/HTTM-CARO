@@ -24,7 +24,25 @@
 .btn{
     min-width: 80px;
 }
-
+.select-model{
+    width: 40%;
+    align-self: flex-start;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 5px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px gray;
+}
+.select-list{
+    width: 55%;
+    border-color:gray ;
+    outline-color: navy;
+    border-radius: 5px;
+    text-align: center;
+    background-color: bisque;
+}
 .model-form {
     width: 500px;
     margin: 0 auto;

@@ -78,6 +78,15 @@ def deleteModel(id):
     except Exception as e:
         return jsonify({"error": str(e)})
     
+@app.route('/activemodel/<id>', methods=['GET'])
+def activeModel(id):
+    try:
+        from dal import modelDAO
+        modelDAO.activeModel(id)
+        return jsonify("success")
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
 if __name__ == '__main__':
     app.run(debug=True)
     
