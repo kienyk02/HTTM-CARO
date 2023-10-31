@@ -41,5 +41,5 @@ def insertMatch(data):
     )
     myCursor=db.cursor()
     sql="insert into match_result(userID,score,status) values(%s,%s,%s)"
-    myCursor.execute(sql,data)
+    myCursor.execute(sql,(data['userID'],data['score'],data['status']))
     db.commit()

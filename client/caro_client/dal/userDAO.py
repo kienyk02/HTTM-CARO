@@ -26,7 +26,7 @@ def updateHighScore(data):
     )
     myCursor=db.cursor()
     sql="update user set highScore = %s where user.ID=%s and user.highScore > %s"
-    myCursor.execute(sql,data)
+    myCursor.execute(sql,(data['score'],data['userID'],data['score']))
     db.commit()
 
 def getUserById(id):

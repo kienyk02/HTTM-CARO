@@ -10,7 +10,7 @@ def insertMatch():
     try:
         data=request.json
         from dal import matchhistoryDAO
-        matchhistoryDAO.insertMatch((data['userID'],data['score'],data['status']))
+        matchhistoryDAO.insertMatch(data)
         return jsonify("success")
     except Exception as e:
         return jsonify({"error": str(e)})
@@ -21,7 +21,7 @@ def updateHighScore():
     try:
         data=request.json
         from dal import userDAO
-        userDAO.updateHighScore((data['score'],data['userID'],data['score']))
+        userDAO.updateHighScore(data)
         return jsonify("Success")
     except Exception as e:
         return jsonify({"error": str(e)})  
