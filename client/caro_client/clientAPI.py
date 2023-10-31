@@ -8,9 +8,9 @@ CORS(app, supports_credentials=False, methods=["GET", "POST", "PUT", "DELETE"])
 @app.route('/insertmatch', methods=['POST'])
 def insertMatch():
     try:
-        data=request.json
+        matchresult=request.json
         from dal import matchhistoryDAO
-        matchhistoryDAO.insertMatch(data)
+        matchhistoryDAO.insertMatch(matchresult)
         return jsonify("success")
     except Exception as e:
         return jsonify({"error": str(e)})
