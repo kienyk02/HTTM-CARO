@@ -61,7 +61,7 @@ def updateModel(model):
     )
     myCursor=db.cursor()
     sql="update caro_server.model set name=%s, link= %s, easy=%s, medium=%s, hard=%s, status=%s where ID=%s"
-    myCursor.execute(sql,(model["name"],model["link"],model["easy"],model["medium"],model["hard"],model["action"],model["id"]))
+    myCursor.execute(sql,(model.name,model.link,model.easy,model.medium,model.hard,model.action,model.id))
     db.commit()
     
 def addModel(model):
@@ -73,7 +73,7 @@ def addModel(model):
     )
     myCursor=db.cursor()
     sql="insert into caro_server.model(name,link,easy,medium,hard,status) values(%s,%s,%s,%s,%s,%s)"
-    myCursor.execute(sql,(model["name"],model["link"],model["easy"],model["medium"],model["hard"],model["action"]))
+    myCursor.execute(sql,(model.name,model.link,model.easy,model.medium,model.hard,model.action))
     db.commit()
 
 def deleteModel(id):

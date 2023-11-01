@@ -59,8 +59,9 @@ def get_modelbyid(id):
 @app.route('/savemodel/<id>', methods=['POST'])
 def saveModel(id):
     try:
-        model=request.json
         from dal import modelDAO
+        modeljson=request.json
+        model = modelDAO.Model(modeljson["id"],modeljson["name"],modeljson["link"],modeljson["easy"],modeljson["medium"],modeljson["hard"],modeljson["action"])
         if int(id)>0:
             modelDAO.updateModel(model)
         else:
