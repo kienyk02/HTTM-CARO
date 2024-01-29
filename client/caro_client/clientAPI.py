@@ -9,8 +9,8 @@ CORS(app, supports_credentials=False, methods=["GET", "POST", "PUT", "DELETE"])
 def insertMatch():
     try:
         matchresult=request.json
-        from dal import matchhistoryDAO
-        matchhistoryDAO.insertMatch(matchresult)
+        from dal import MatchResultDAO
+        MatchResultDAO.insertMatch(matchresult)
         return jsonify("success")
     except Exception as e:
         return jsonify({"error": str(e)})
@@ -20,8 +20,8 @@ def insertMatch():
 def updateHighScore():
     try:
         data=request.json
-        from dal import userDAO
-        userDAO.updateHighScore(data)
+        from dal import UserDAO
+        UserDAO.updateHighScore(data)
         return jsonify("Success")
     except Exception as e:
         return jsonify({"error": str(e)})  
@@ -29,7 +29,7 @@ def updateHighScore():
 @app.route('/getUser/<id>', methods=['GET'])
 def getUserByID(id):
     try:
-        from dal import userDAO
+        from dal import UserDAO
         user={
             "id": "",
             "email": "",
@@ -37,7 +37,7 @@ def getUserByID(id):
             "password": "",
             "highScore": ""
         }
-        user = userDAO.getUserById(id).to_dict()
+        user = UserDAO.getUserById(id).to_dict()
         return jsonify(user)
     except Exception as e:
         return jsonify({"error": str(e)})

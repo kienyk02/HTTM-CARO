@@ -1,7 +1,7 @@
 import mysql.connector
 from dal.DBContext import host,username,passwd,database
 
-class Match:
+class MatchResult:
     def __init__(self, id, userid, score, status,time):
         self.id=id
         self.userid=userid
@@ -29,7 +29,7 @@ def getMatchbyUserID(uid):
     myCursor.execute(sql)
     records=[]
     for item in myCursor:
-        records.append(Match(item[0],item[1],item[2],item[3],item[4]))
+        records.append(MatchResult(item[0],item[1],item[2],item[3],item[4]))
     return records
 
 def insertMatch(data):

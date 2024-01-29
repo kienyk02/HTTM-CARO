@@ -84,10 +84,10 @@ def activeModel(id):
     try:
         from dal import modelDAO
         modelDAO.activeModel(id)
-        return jsonify("success")
+        return jsonify("delete success")
     except Exception as e:
         return jsonify({"error": str(e)})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
     
